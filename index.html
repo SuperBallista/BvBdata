@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Web Server Example</title>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css" />
+    <title>Ranking Table</title>
   </head>
   <body>
-    <div class="content">
-      <h1>Welcome to My Web Server</h1>
-      <p>This is the content served by the server from the record.txt file.</p>
-    </div>
+    <h1>Ranking Table</h1>
+    <table id="rankingTable" border="1">
+      <tr>
+        <th>Grade</th>
+        <th>Nickname</th>
+        <th>Final Score</th>
+        <th>Battle Score</th>
+        <th>Wins</th>
+        <th>Losses</th>
+      </tr>
+    </table>
+
+    <script>
+      fetch("/getRankings")
+        .then((response) => response.json())
+        .then((rankings) => {
+          const table = document.getElementById("rankingTable");
+
+          rankings.forEach((rank) => {
+            const row = table.insertRow();
+            row.insertCell().textContent = rank.rade;
+            row.insertCell().textContent = rank.name;
+            row.insertCell().textContent = rank.tscore;
+            row.insertCell().textContent = rank.bscore;
+            row.insertCell().textContent = rank.win;
+            row.insertCell().textContent = rank.lose;
+          });
+        })
+        .catch((error) => console.error("Error fetching rankings:", error));
+    </script>
   </body>
 </html>

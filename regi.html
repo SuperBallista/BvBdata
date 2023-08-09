@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 가입 폼</title>
+  </head>
+  <body>
+    <h1>회원 가입</h1>
+    <form action="/process_registration" method="POST">
+      <label for="nickname">닉네임:</label>
+      <input type="text" id="nickname" name="nickname" required /><br /><br />
+
+      <label>무기등급:</label>
+      <input
+        type="radio"
+        id="weaponGrade1"
+        name="weaponGrade"
+        value="고뇌"
+        required
+      />
+      <label for="weaponGrade1">고뇌</label>
+
+      <input type="radio" id="weaponGrade2" name="weaponGrade" value="비고뇌" />
+      <label for="weaponGrade2">비고뇌</label><br /><br />
+
+      <label for="password">암호:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
+
+      <input type="submit" value="가입" />
+    </form>
+  </body>
+</html>

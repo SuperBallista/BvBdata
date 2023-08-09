@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>디아블로2 정통바바 랭킹</title>
+  </head>
+  <body>
+    <h1>Record Table</h1>
+    <table id="recordTable" border="1">
+      <tr>
+        <th>Winner</th>
+        <th>Winner Score</th>
+        <th>Loser</th>
+        <th>Loser Score</th>
+      </tr>
+    </table>
+
+    <script>
+      // API 호출 및 표 생성
+      fetch("/getRecords")
+        .then((response) => response.json())
+        .then((records) => {
+          const table = document.getElementById("recordTable");
+
+          records.forEach((record) => {
+            const row = table.insertRow();
+            row.insertCell().textContent = record.win;
+            row.insertCell().textContent = record.wscore;
+            row.insertCell().textContent = record.lose;
+            row.insertCell().textContent = record.lscore;
+          });
+        })
+        .catch((error) => console.error("Error fetching records:", error));
+    </script>
+  </body>
+</html>
