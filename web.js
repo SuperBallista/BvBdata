@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express( );
+var app = express();
 var path = require('path');
 
 app.use(express.static('public'));
@@ -15,7 +15,7 @@ var app = http.createServer(function(request, response) {
     var pathname = url.parse(_url, true).pathname;
 
     if (pathname === '/') {
-        fs.readFile('main.html', 'utf8', function(err, content) {
+        fs.readFile('index.html', 'utf8', function(err, content) {
             if (err) {
                 response.writeHead(500); // Internal Server Error
                 response.end('Internal Server Error');
