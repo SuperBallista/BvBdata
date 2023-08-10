@@ -4,6 +4,26 @@
     <title>Ranking Table</title>
   </head>
   <body>
+    <div class="nav">
+      <div class="nav__logined">
+        <div class="nav__id nav__logined"></div>
+        <div class="nav__logined"><span class="nav__login-nickname"></span></div>
+        <div class="nav__logout nav__logined"><a class="nav__logined nav__logout-link" href="#">로그아웃</a></div>
+      </div>
+        <div class="nav__logouted">
+          <div class="nav__login nav__logouted"><a class="nav__logouted" href="login.html">로그인</a></div>
+          <div class="nav__regi nav__logouted"><a class="nav__logouted" href="regi.html">캐릭터 등록</a></div>
+        </div>
+        <div class="nav__sitemap">
+          <div class="nav__rank"><a href="index.html">랭킹 보기</a></div>
+          <div class="nav__newrecord"><a href="newrecord.html">결과 등록</a></div>
+          <div class="nav__rank"><a href="record.html">대전기록 보기</a></div>
+          <div class="nav__rank"><a href="hall.html">명예의 전당</a></div>
+        </div>
+      </div>
+    </div>
+    
+
     <h1>Ranking Table</h1>
     <table id="rankingTable" border="1">
       <tr>
@@ -15,24 +35,7 @@
         <th>Losses</th>
       </tr>
     </table>
-
-    <script>
-      fetch("/getRankings")
-        .then((response) => response.json())
-        .then((rankings) => {
-          const table = document.getElementById("rankingTable");
-
-          rankings.forEach((rank) => {
-            const row = table.insertRow();
-            row.insertCell().textContent = rank.rade;
-            row.insertCell().textContent = rank.name;
-            row.insertCell().textContent = rank.tscore;
-            row.insertCell().textContent = rank.bscore;
-            row.insertCell().textContent = rank.win;
-            row.insertCell().textContent = rank.lose;
-          });
-        })
-        .catch((error) => console.error("Error fetching rankings:", error));
-    </script>
+    <script src="index.js"></script>
+<script src="logined.js"></script>
   </body>
 </html>

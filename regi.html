@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원 가입 폼</title>
+    <title>캐릭터 등록</title>
   </head>
   <body>
-    <h1>회원 가입</h1>
-    <form action="/process_registration" method="POST">
+    <h1>캐릭터</h1>
+    <form
+      action="/process_registration"
+      method="POST"
+      onsubmit="return checkNickname()"
+    >
       <label for="nickname">닉네임:</label>
-      <input type="text" id="nickname" name="nickname" required /><br /><br />
+      <input type="text" id="nickname" name="nickname" required />
+      <button type="button" id="checkNicknameBtn">중복 확인</button>
+      <span id="messageOutput"></span> <br /><br />
 
       <label>무기등급:</label>
       <input
@@ -32,7 +38,12 @@
         required
       /><br /><br />
 
-      <input type="submit" value="가입" />
+      <input type="submit" value="가입" id="submitButton" disabled />
     </form>
+    <div>
+      <a href="javascript:history.back()">뒤로가기</a>
+    </div>
+
+    <script src="regi.js"></script>
   </body>
 </html>

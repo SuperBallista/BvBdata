@@ -1,53 +1,37 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const bcrypt = require('bcrypt');
-const port = 3000;
 
-const app = express();
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'F4u@corsair',
-    database: 'BvBdata'
-});
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname)); // 정적 파일 서비스 (이하 생략)
+      const formData = new FormData(loginForm);
+      const username = formData.get("username");
+      const password = formData.get("password");
 
-// 로그인 처리 라우트
-app.post('/login', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    const sql = `SELECT * FROM member WHERE name = ?`;
-    db.query(sql, [username], (err, results) => {
-        if (err) {
-            return res.status(500).send('Internal Server Error');
-        }
-
-        if (results.length === 0) {
-            return res.status(401).send('User not found');
-        }
-
-        const user = results[0];
-
-        // 비밀번호 비교 (bcrypt.compare 메서드 사용)
-        bcrypt.compare(password, user.pw, (bcryptErr, isMatch) => {
-            if (bcryptErr) {
-                return res.status(500).send('Internal Server Error');
-            }
-
-            if (isMatch) {
-                res.redirect('/index.html');
-            } else {
-                res.status(401).send('Incorrect password');
-            }
+      try {
+        const response = await fetch("/login_process", {
+          method: "POST",
+          body: new URLSearchParams({ username, password }),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         });
-    });
-});
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+        if (response.ok) {
+          const data = await response.json();
+          const accessToken = data.accessToken;
+
+          // 토큰을 로컬 스토리지에 저장
+          localStorage.setItem("accessToken", accessToken);
+
+          // index.html로 이동
+          window.location.href = "index.html";
+        } else {
+          alert("Login failed. Please check your credentials.");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    });
+  });

@@ -6,6 +6,26 @@
     <title>디아블로2 정통바바 랭킹</title>
   </head>
   <body>
+
+    <div class="nav">
+      <div class="nav__logined">
+        <div class="nav__id nav__logined"></div>
+        <div class="nav__logined"><span class="nav__login-nickname"></span></div>
+        <div class="nav__logout nav__logined"><a class="nav__logined nav__logout-link" href="#">로그아웃</a></div>
+      </div>
+        <div class="nav__logouted">
+          <div class="nav__login nav__logouted"><a class="nav__logouted" href="login.html">로그인</a></div>
+          <div class="nav__regi nav__logouted"><a class="nav__logouted" href="regi.html">캐릭터 등록</a></div>
+        </div>
+        <div class="nav__sitemap">
+          <div class="nav__rank"><a href="index.html">랭킹 보기</a></div>
+          <div class="nav__newrecord"><a href="newrecord.html">결과 등록</a></div>
+          <div class="nav__rank"><a href="record.html">대전기록 보기</a></div>
+          <div class="nav__rank"><a href="hall.html">명예의 전당</a></div>
+        </div>
+      </div>
+    </div>
+
     <h1>Record Table</h1>
     <table id="recordTable" border="1">
       <tr>
@@ -17,21 +37,9 @@
     </table>
 
     <script>
-      // API 호출 및 표 생성
-      fetch("/getRecords")
-        .then((response) => response.json())
-        .then((records) => {
-          const table = document.getElementById("recordTable");
-
-          records.forEach((record) => {
-            const row = table.insertRow();
-            row.insertCell().textContent = record.win;
-            row.insertCell().textContent = record.wscore;
-            row.insertCell().textContent = record.lose;
-            row.insertCell().textContent = record.lscore;
-          });
-        })
-        .catch((error) => console.error("Error fetching records:", error));
     </script>
-  </body>
+<script src="logined.js"></script>
+<script src="record.js"></script>
+
+</body>
 </html>
