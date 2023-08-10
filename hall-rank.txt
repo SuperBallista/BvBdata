@@ -1,0 +1,12 @@
+시즌 1	TOONGTANG	Thanos	AlwaysReview
+시즌 2	TOONGTANG	BABARIAN	Thanos
+시즌 3	TOONGTANG	Joral_Sinsa	ALO
+시즌 4	Joral_Sinsa	오찬물	ADOOBA
+시즌 5	ADOOBA	오찬물	Joral_Sinsa
+시즌 6	PABLO	오찬물	ADOOBA
+시즌 7	봐바	ALO	도라라
+시즌 8	야만용사	DUKY	ALO
+시즌 9	야만용사	ADOOBA	DUKY
+시즌 10	ALO	ADOOBA	DUKY
+	통합 우승	고뇌 우승	비고뇌 우승
+23년 7월	BB	BB	오찬물
