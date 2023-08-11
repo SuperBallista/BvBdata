@@ -30,19 +30,20 @@
     <form id="scoreForm">
         <label for="winner">승자:</label>
         <select id="winner" name="winner">
-            <option value="blank">선택하세요</option>
+            <option value=null>선택하세요</option>
         </select>
         <br>
         
         <label for="winnerScore">승자 점수:</label>
         <input type="number" id="winnerScore" name="winnerScore" readonly value="5">
         <br>
-        
+
         <label for="myScore">내 점수:</label>
         <input type="number" id="myScore" name="myScore">
         <br>
         
-        <button type="submit">보내기</button>
+        
+        <button type="submit" id="submitButton">보내기</button>
     </form>
 
 

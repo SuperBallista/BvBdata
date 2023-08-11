@@ -24,7 +24,7 @@ fetch('/get_winners', {
 
 
 const scoreTable = document.querySelector('.score-table');
-const accessToken = localStorage.getItem('accessToken'); // 로그인 토큰 가져오기
+let accessToken = localStorage.getItem('accessToken'); // 로그인 토큰 가져오기
 if (accessToken) {
     fetch('/get_scores', {
         method: 'POST',
@@ -74,3 +74,39 @@ console.log(data.scores)
 // 미승인 게임 불러오기 끝
 
 
+// 대전 경기 보내기
+// DOMContentLoaded 이벤트 리스너에서 이벤트 핸들러 등록
+
+document.addEventListener('DOMContentLoaded', () => {
+    const submitButton = document.getElementById('submitButton');
+
+    submitButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const winner = document.getElementById('winner').value;
+        const winnerScore = document.getElementById('winnerScore').value;
+        const myScore = document.getElementById('myScore').value;
+        
+        console.log(winner);
+        console.log(winnerScore);
+console.log(myScore);
+        // accessToken 변수 정의
+        accessToken = 'your-access-token'; // 실제 토큰 값을 넣어주세요
+
+        // 서버로 데이터 전송
+        axios.post('/submitbr', {
+            winner: winner,
+            winnerScore: winnerScore,
+            myScore: myScore,
+        }, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+        .then(response => {
+            console.log(response.data.message);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    });
+});
