@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const jwt = require('jsonwebtoken'); // JSON Web Token 라이브러리
 
-const secretKey = 'your-secret-key'; // 토큰 서명에 사용할 비밀 키
+const secretKey = '23948239482349salkdjasjdlk'; // 토큰 서명에 사용할 비밀 키
 const app = express();
 const port = 3000;
 
@@ -27,6 +27,7 @@ function verifyToken(req, res, next) {
         next();
     });
 }
+
 
 
 // DB 연결 관리 함수
@@ -248,7 +249,67 @@ function getScores(req, res) {
     });
 }
 
+// 대전 결과 등록하기 처리
+
+app.post('/submitbr', verifyToken, (req, res) => {
+    const { winname, winscore, myScore2 } = req.body;
+    const username = req.user.username;
+
+    // 사용자명으로 닉네임 조회
+    const sql = 'SELECT name FROM member WHERE name = ?';
+    const db = createConnection();
+
+    db.query(sql, [username], (err, nicknameResults) => {
+        if (err) {
+            console.error('Error fetching nickname:', err);
+            db.end();
+            return res.status(500).json({ error: 'Error fetching nickname' });
+        }
+
+        if (nicknameResults.length > 0) {
+            const nickname = nicknameResults[0].name;
+
+            // unchecked 테이블에 데이터 삽입
+            const currentDate = new Date().toISOString().slice(0, 10);
+            const insertSql = 'INSERT INTO unchecked (id, order_number, date, winner, winning_score, loser, losing_Score) VALUES (?, 1, ?, ?, ?, ?, ?)';
+            
+            db.query('SELECT COUNT(*) AS rowCount FROM unchecked', (error, results) => {
+                if (error) {
+                    console.error('Error getting row count:', error);
+                    db.end();
+                    return res.status(500).json({ message: 'Server error' });
+                }
+
+                const rowCount = results[0].rowCount;
+                const id = rowCount + 1;
+
+                db.query(
+                    insertSql,
+                    [id, currentDate, winname, winscore, nickname, myScore2],
+                    (error, insertResults) => {
+                        if (error) {
+                            console.error('Error inserting data:', error);
+                            db.end();
+                            return res.status(500).json({ message: 'Server error' });
+                        }
+                        console.log('Data inserted successfully');
+                        res.status(200).json({ message: 'Data inserted successfully' });
+                    }
+                );
+            });
+        } else {
+            return res.status(500).json({ error: 'Nickname not found' });
+        }
+    });
+});
+db.end();
+
+
+
+
 // 서버 실행
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+
