@@ -11,6 +11,8 @@
             row.insertCell().textContent = record.wscore;
             row.insertCell().textContent = record.lose;
             row.insertCell().textContent = record.lscore;
+            row.classList.add("table-row");
+
           });
         })
         .catch((error) => console.error("Error fetching records:", error));

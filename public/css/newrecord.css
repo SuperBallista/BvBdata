@@ -19,15 +19,30 @@ padding: 3%;
 text-align: center;
 }
 
+
 #winner{
 width: 40%;
 height: 30px;
 margin: 1%;
 }
-#winnerscore, #myscore{
-width: 40px;
-height: 30px;
+
+#winnerScore, #myScore{
+width: 60px;
+height: 25px;
 margin: 3%;
+color : white;
+background-color: rgba(0,0,0,0.7);
+border-radius: 20px;
+padding-left: 15px;
+font-family: diablo;
+}
+
+option, #winner{
+    color : white;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    padding-left: 15px;
+    font-family: diablo;
 }
 
 .scorebox{

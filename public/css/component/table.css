@@ -34,7 +34,7 @@ text-align: center;
 height: 10%;
 }
 
-#rankingTable th, #recordTable th, #rankingTable th, #recordTable th{
+#rankingTable th, #rankingTable th, #recordTable th, #formalRankingTable th, #themaRankingTable th{
     border: 1px solid white;
     font-size: 18px;
     width: 15%;
