@@ -1,4 +1,4 @@
-
+let uncheckedid = [];
 
 const winnerSelect = document.getElementById('winner');
 
@@ -21,12 +21,11 @@ fetch('/get_winners', {
 
 // 승자 목록 가져오기 끝
 
-
 // 미승인 게임 불러오기
-
 
 const scoreTable = document.querySelector('.score-table');
 let accessToken = localStorage.getItem('accessToken'); // 로그인 토큰 가져오기
+
 if (accessToken) {
     fetch('/get_scores', {
         method: 'POST',
@@ -37,16 +36,21 @@ if (accessToken) {
     })
     .then(response => response.json())
     .then(data => {
-console.log(data.scores)
+        console.dir(data.scores);
 
-
-
-        data.scores.forEach(score => {
+        data.scores.forEach((score, index) => {
             const row = scoreTable.insertRow();
             const cell1 = row.insertCell(0);
             const cell2 = row.insertCell(1);
             const cell3 = row.insertCell(2);
             const cell4 = row.insertCell(3);
+
+            cell1.id = `winscore${index}`;
+            cell2.id = `loser${index}`;
+            cell3.id = `losescore${index}`;
+            cell4.id = `button${index}`;
+
+            uncheckedid.push(score.id);
 
             cell1.textContent = score.winning_score;
             cell2.textContent = score.loser;
@@ -59,25 +63,84 @@ console.log(data.scores)
             approvalButton.textContent = '승인';
             approvalButton.className = 'approval-button';
 
+
             const cancelButton = document.createElement('button');
             cancelButton.textContent = '취소';
             cancelButton.className = 'cancel-button';
+
+
+    // 클로저 내부에서 score의 uncheckedid를 참조하여 사용
+
+
+    approvalButton.addEventListener('click', (event) => {
+        const aclickedId = uncheckedid[index]; // 해당 행의 uncheckedid 값을 저장
+
+        // 서버로 데이터를 전송
+        fetch('/approvecord', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                approvecord: aclickedId // 해당 행의 uncheckedid를 서버로 전송
+            }
+            )
+        }
+            )
+        .then(response => {
+            if (response.ok) {
+                alert("기록을 승인하였습니다")
+                location.reload(); // 요청이 성공했을 때에만 새로고침
+            } else {
+                alert("기록에 실패하였습니다. 다시 시도해주세요.")
+                console.error('Record add failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error during record add:', error);
+        });
+    });
+
+    cancelButton.addEventListener('click', (event) => {
+        const clickedId = uncheckedid[index]; // 해당 행의 uncheckedid 값을 저장
+
+        console.dir(clickedId);
+        // 서버로 데이터를 전송
+        fetch('/removerecord', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                removerecord: clickedId // 해당 행의 uncheckedid를 서버로 전송
+            }
+            )
+        }
+)
+        .then(response => {
+            if (response.ok) {
+                location.reload(); // 요청이 성공했을 때에만 새로고침
+            } else {
+                console.error('Record deletion failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error during record deletion:', error);
+        });
+    });
+
+
+
 
             actionButtons.appendChild(approvalButton);
             actionButtons.appendChild(cancelButton);
             cell4.appendChild(actionButtons);
         });
-    })
-    .catch(error => {
-        console.error('Error fetching scores:', error);
     });
-}
-
-// 미승인 게임 불러오기 끝
+};
 
 
-// 대전 경기 보내기
-
+// 대전 경기 보내기 부분 수정됨
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submitButton');
     const winnerSelect = document.getElementById('winner');
@@ -90,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const winner = winnerSelect.value;
         const winnerScore = winnerScoreInput.value;
         const myScore = myScoreInput.value;
-        
+
         const accessToken = localStorage.getItem('accessToken');
 
         const requestBody = {
@@ -103,19 +166,18 @@ document.addEventListener('DOMContentLoaded', () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         });
-        
+
         try {
             const response = await fetch('/submitbr', {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify(requestBody)
             });
-        
+
             if (response.ok) { // 응답 상태 코드가 200 (OK)일 때
                 const responseData = await response.json();
-                alert('데이터를 성공적으로 보냈습니다')
+                alert('데이터를 성공적으로 보냈습니다');
                 location.reload();
-
             } else {
                 console.error('Error sending data:', response.statusText);
                 alert('Error sending data. Please try again.');
@@ -124,8 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error sending data:', error);
             alert('Error sending data. Please try again.');
         }
-        
-        
-        
     });
 });
+
+// 미승인 기록 삭제요청 끝

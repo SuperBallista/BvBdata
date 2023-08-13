@@ -3,44 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>캐릭터 등록</title>
+    <title>디아블로2 레저렉션 정통바바</title>
   </head>
   <body>
-    <h1>캐릭터</h1>
+    <link rel="stylesheet" href="public/css/style.css" />
+
+    <h3>캐릭터 등록</h3>
     <form
       action="/process_registration"
       method="POST"
       onsubmit="return checkNickname()"
+      id="regiForm"
+      class="form"
     >
-      <label for="nickname">닉네임:</label>
-      <input type="text" id="nickname" name="nickname" required />
-      <button type="button" id="checkNicknameBtn">중복 확인</button>
-      <span id="messageOutput"></span> <br /><br />
+      <div class="form__line">
+        <label for="nickname">계정 이름:</label>
 
-      <label>무기등급:</label>
-      <input
-        type="radio"
-        id="weaponGrade1"
-        name="weaponGrade"
-        value="고뇌"
-        required
-      />
-      <label for="weaponGrade1">고뇌</label>
+        <input type="text" id="nickname" name="nickname" required />
+        <button type="button" id="checkNicknameBtn">중복 확인</button>
+      </div>
 
-      <input type="radio" id="weaponGrade2" name="weaponGrade" value="비고뇌" />
-      <label for="weaponGrade2">비고뇌</label><br /><br />
+      <div class="form__line">
+        <span id="messageOutput"></span>
+      </div>
+      <div class="form__line">
+        <label>무기등급:</label>
+        <input
+          type="radio"
+          id="weaponGrade1"
+          name="weaponGrade"
+          value="고뇌"
+          required
+        />
+        <label for="weaponGrade1">고뇌</label>
 
-      <label for="password">암호:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        required
-      /><br /><br />
+        <input
+          type="radio"
+          id="weaponGrade2"
+          name="weaponGrade"
+          value="비고뇌"
+        />
+        <label for="weaponGrade2">비고뇌</label>
+      </div>
+      <div class="form__line">
+        <label for="password">비밀 번호:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
 
       <input type="submit" value="가입" id="submitButton" disabled />
     </form>
-    <div>
+    <div class="back">
       <a href="javascript:history.back()">뒤로가기</a>
     </div>
 

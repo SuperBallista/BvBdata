@@ -1,1 +1,22 @@
 @import "component/reset.css";
+@import "component/table.css";
+@import "component/nav.css";
+@import "newrecord.css";
+@import "component/form.css";
+@import "loginfail.css";
+
+
+
+
+@font-face {
+    font-family:'diablo' ;
+    src: url(/public/css/kodia.ttf) ;
+}
+
+body {background-color: black;
+    color: white;
+    background-image: url(/public/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+font-family: 'diablo';
+}

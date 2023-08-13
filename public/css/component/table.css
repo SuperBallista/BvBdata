@@ -1,0 +1,54 @@
+.rank_title, .record_title, .hall-title, .newrecord-title{
+margin-top: 35%;
+display: block;
+text-align: center;
+font-size: 35px;
+margin-bottom: 5%;
+}
+
+#rankingTable, #recordTable, #rankingTable, #formalRankingTable,#themaRankingTable, .score-table{
+background-color: rgba(255,255,255,0.5);
+padding: 2%;
+}
+
+#rankingTable, #themaRankingTable{
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 10%;
+
+}
+
+#recordTable,#rankingTable, #formalRankingTable, .score-table{
+  width: 70%;
+  margin-left: 15%;
+  margin-bottom: 10%;
+
+}
+
+.score-table th{
+width: 13.14%;
+border: 1px solid white;
+font-size: 18px;
+padding: 1%;
+text-align: center;
+height: 10%;
+}
+
+#rankingTable th, #recordTable th, #rankingTable th, #recordTable th{
+    border: 1px solid white;
+    font-size: 18px;
+    width: 15%;
+    padding: 1%;
+    text-align: center;
+    height: 10%;
+
+  }
+  
+  .table-row td {
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 1%;
+    text-align: center;
+    height: 10%;
+  }
+
+

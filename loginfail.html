@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Login Failed</title>
+    <title>디아블로2 레저렉션 정통바바</title>
   </head>
-  <body>
-    <h1>Login Failed</h1>
-    <p>
-      Your login attempt was unsuccessful. Please check your username and
-      password.
-    </p>
-    <button onclick="goBack()">Go Back</button>
+  <body class="fail">
+    <link rel="stylesheet" href="public/css/style.css" />
+    <main class="main-fail">
+      <div class="fail-title">로그인에 실패하였습니다</div>
+      <div class="fail-span">계정이름과 비밀번호를 확인하여 주십시오</div>
+      <div class="back">
+        <button class="backbutton" onclick="goBack()">뒤로가기</button>
+      </div>
+    </main>
 
     <script>
       function goBack() {

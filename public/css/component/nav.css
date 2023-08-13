@@ -1,0 +1,47 @@
+
+.nav{
+position: fixed;
+width: 95%;
+top:2.5%;
+margin-left: 2.5%;
+background-color: rgba(20,20,20,0.9);
+border-radius: 20px;
+}
+
+.nav__logouted-line, .nav__logined-line{
+display : flex;
+margin:1%;
+justify-content: right;
+border-bottom: 1px solid yellow ;
+padding:3px;
+}
+
+.nav__login, .nav__regi, .nav__name, .nav__logout{
+font-size: 15px;
+padding: 10px;
+}
+
+.nav__logouted-line svg, .nav__logined svg{
+    width: 15px;
+    height: 15px;
+}
+
+
+.nav__sitemap{
+
+    display : flex;
+justify-content: space-evenly;
+margin:3% 5% 5% 0;
+
+}
+
+.nav__rank, .nav__newrecord, .nav__record, .nav__hall{
+font-size : 18px;
+margin:1%, 5%;
+text-align: center;    
+}
+
+.nav__sitemap svg{
+width: 30px;
+height: 30px;
+}
