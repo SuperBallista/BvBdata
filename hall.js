@@ -16,6 +16,8 @@ function displayRankingData(url, tableId) {
         // 행에 클래스 추가
         newRow.classList.add("table-row");
       });
+
+      
     })
     .catch((error) => {
       console.error("Error fetching ranking data:", error);
@@ -30,3 +32,11 @@ displayRankingData("hall-formal.txt", "formalRankingTable");
 
 // 'hall-thema.txt' 파일 데이터 표시
 displayRankingData("hall-thema.txt", "themaRankingTable");
+
+
+
+displayRankingData("hall-rank-mobile.txt", "rankingTable-portrait");
+
+displayRankingData("hall-rank-formal-mobile.txt", "formalRankingTable-portrait");
+
+displayRankingData("hall-rank-thema-mobile.txt", "themaRankingTable-portrait");

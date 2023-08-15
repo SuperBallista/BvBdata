@@ -1,10 +1,12 @@
-const logical = 100
-const penaltyday = 1
-const penaltypercent = 0.01
-const losersubpoint = 0.05
-const winpluspoint = 0.1
-const playbonus = 6
-const thek = 60
+// 점수 로직에 활용되는 상수값
+
+const logical = 100 //지수값
+const penaltyday = 1 //패널티일
+const penaltypercent = 0.01 //패널티감점비율
+const losersubpoint = 0.05 //패배시 잃는 포인트 비율
+const winpluspoint = 0.1 // 경기 승당 얻는 포인트 비율
+const playbonus = 6 // 대전경기 등록시 얻는 기본 보너스점수
+const thek = 60 //k값
 
 
 // 계산 세팅값
@@ -69,7 +71,7 @@ app.get('/checkNickname/:nickname', (req, res) => {
     db.query(sql, [nickname], (err, results) => {
         db.end();
         if (err) {
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(200).json({ nickname: 'No One Use it' });
             return;
         }
         const count = results[0].count;
@@ -123,7 +125,7 @@ app.get('/getRecords', getRecords);
 app.get('/getRankings', getRankings);
 
 function getRecords(req, res) {
-    const sql = 'SELECT win, wscore, lose, lscore FROM record';
+    const sql = 'SELECT win, wscore, lose, lscore FROM record ORDER by rder DESC';
     const db = createConnection();
 
     db.query(sql, (err, results) => {
@@ -358,6 +360,7 @@ app.post('/approvecord', (req, res) => {
     const findplayerdata = 'SELECT * FROM ranking WHERE name = ?';
     const movedqury = 'UPDATE unchecked SET winner = "add-record" WHERE id = ?';
 
+    
     console.log(approvecord);
 
     const db = createConnection();
@@ -433,7 +436,7 @@ db.query(updateWinUserQuery, [winUserData.bscore, winUserData.tscore, winUserDat
     } else {
 
                            
-        db.query(updateLoseUserQuery, [loseUserData.bscore, loseUserData.tscore, loseUserData.win, loseName], (err, Results) => {
+        db.query(updateLoseUserQuery, [loseUserData.bscore, loseUserData.tscore, loseUserData.lose, loseName], (err, Results) => {
             if (err) {
                 console.log("Loser Score Update failed");
             } else {

@@ -1,31 +1,44 @@
-.fail-title{
-    margin-top:5%;
+@media screen and (orientation : portrait) {
+
+    .main-fail{
+        margin-top:35vh;
+background-color: rgba(100,100,100,0.7);
+margin-left: 8vw;
+margin-right: 8vw;
+padding: 40px;
+border-radius: 20px;
+    }
+
+    .fail-title{
+font-size: 65px;
 text-align: center;
-font-size:40px;
-margin-bottom: 10%;
 }
 .fail-span{
-   text-align: center;
-font-size:25px;
-padding-bottom: 5%;
-margin-bottom: 5%;
-}
-
-.fail{
-    height: 70vh;
+font-size:50px;
+margin:30px 10vw;
 
 }
-
-.main-fail{
-border-radius: 30px;
-background-color: rgba(80,80,80,0.6);    
-margin-top:30%;
-padding:5% 0;
-width: 80%;
-height: 25vh;
-margin-left: 10%;
 }
 
-.backbutton{
-    margin-right: -10%;
+
+@media screen and (orientation : landscape) {
+
+    .main-fail{
+        margin-top:15vh;
+background-color: rgba(100,100,100,0.7);
+margin-left: 10vw;
+margin-right: 10vw;
+padding: 40px;
+border-radius: 20px;
+    }
+
+    .fail-title{
+font-size: 50px;
+text-align: center;
+}
+.fail-span{
+font-size:35px;
+margin:30px 10vw;
+
+}
 }

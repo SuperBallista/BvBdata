@@ -1,47 +1,95 @@
+    
 
-.nav{
-position: fixed;
-width: 95%;
-top:2.5%;
-margin-left: 2.5%;
-background-color: rgba(20,20,20,0.9);
-border-radius: 20px;
+@media screen and (orientation : portrait) {
+    .nav svg{
+        width : 60px;
+        height : 60px;
+        }
+        
+        
+            .nav__logined svg, .nav__logouted svg{
+        width: 45px;;
+        height:45px;
+            }
+            .nav__logined-line, .nav__logouted-line{
+                display: flex;
+justify-content: space-evenly;                
+            }
+
+
+    .nav__logined-line div, .nav__logouted-line div{
+text-align: right;
+font-size: 60px;
+margin-top:40px;
+background-color: rgba(40,40,40,0.7);
+padding: 25px;
+border-radius: 30px;
 }
 
-.nav__logouted-line, .nav__logined-line{
-display : flex;
-margin:1%;
-justify-content: right;
-border-bottom: 1px solid yellow ;
-padding:3px;
-}
-
-.nav__login, .nav__regi, .nav__name, .nav__logout{
-font-size: 15px;
-padding: 10px;
-}
-
-.nav__logouted-line svg, .nav__logined svg{
-    width: 15px;
-    height: 15px;
-}
 
 
 .nav__sitemap{
 
-    display : flex;
-justify-content: space-evenly;
-margin:3% 5% 5% 0;
+    margin: 100px 80px 100px 270px;
+
+font-size: 90px;
+text-align: right;
 
 }
 
-.nav__rank, .nav__newrecord, .nav__record, .nav__hall{
-font-size : 18px;
-margin:1%, 5%;
-text-align: center;    
+.nav__sitemap div{
+    background-color: rgba(40,40,40,0.7);
+border-radius : 15px;
+    margin : 40px;
+    padding: 25px;
 }
+
+
+    
+}
+
+
+@media screen and (orientation : landscape) {
+
+.nav{
+
+background-color: rgba(140,140,140,0.7);
+border-radius: 30px;
+margin:10px 5vw;
+}
+
+.nav__logined-line, .nav__logouted-line{
+display: flex;
+justify-content: space-evenly;    
+font-size : 45px;
+padding: 10px;
+}
+
+.nav__logined svg, .nav__logouted svg{
+    width: 30px;
+    height:30px;
+        }
+
+        .nav__sitemap{
+            border-top:1px solid yellow;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 30px;
+        }
+
 
 .nav__sitemap svg{
-width: 30px;
-height: 30px;
+display: block;
+width: 130px;
+    height:80px;
+    
+}
+.nav__sitemap div{
+text-align: center;   
+font-size:25px;     
+    }
+    
+
+
+
 }

@@ -1,54 +1,77 @@
-.rank_title, .record_title, .hall-title, .newrecord-title{
-margin-top: 35%;
-display: block;
-text-align: center;
-font-size: 35px;
-margin-bottom: 5%;
-}
+@media screen and (orientation : portrait) {
 
-#rankingTable, #recordTable, #rankingTable, #formalRankingTable,#themaRankingTable, .score-table{
-background-color: rgba(255,255,255,0.5);
-padding: 2%;
-}
-
-#rankingTable, #themaRankingTable{
-  width: 90%;
-  margin-left: 5%;
-  margin-bottom: 10%;
+table{
+background-color: rgba(100,100,100,0.7);
+margin : 40px 6%;
+Width : 88vw;
+border-radius: 20px;
 
 }
 
-#recordTable,#rankingTable, #formalRankingTable, .score-table{
-  width: 70%;
-  margin-left: 15%;
-  margin-bottom: 10%;
+.table-row{
 
-}
-
-.score-table th{
-width: 13.14%;
-border: 1px solid white;
-font-size: 18px;
-padding: 1%;
-text-align: center;
-height: 10%;
-}
-
-#rankingTable th, #rankingTable th, #recordTable th, #formalRankingTable th, #themaRankingTable th{
-    border: 1px solid white;
-    font-size: 18px;
-    width: 15%;
-    padding: 1%;
+    font-size: 45px;
     text-align: center;
-    height: 10%;
+    padding:25px;
 
-  }
-  
-  .table-row td {
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 1%;
+}
+
+
+th{
+    font-size: 60px;
     text-align: center;
-    height: 10%;
-  }
+    padding:25px;
+}
+
+.portrait th,
+.portrait td {
+    font-size: 50px;
+    padding: 25px;
+    text-align: center;
+
+}
+
+.win-nick-mobile, .lose-nick-mobile{
+    width: 44vw;
+
+}
 
 
+.nickname-th{
+width: 50vw;
+
+}
+
+
+.landscape{
+    display: none;
+}
+.portrait{
+display:block;
+}
+
+}
+
+
+@media screen and (orientation : landscape) {
+
+    table{
+        background-color: rgba(100,100,100,0.7);
+        margin : 40px 6%;
+        Width : 88vw;
+        border-radius: 20px;
+        }
+
+        .table-row, th{
+
+            font-size: 25px;
+            text-align: center;
+            padding:25px;
+        }
+.portrait{
+display: none;
+
+}
+
+
+}

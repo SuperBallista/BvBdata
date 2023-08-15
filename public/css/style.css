@@ -1,6 +1,7 @@
 @import "component/reset.css";
-@import "component/table.css";
+@import "component/h1.css";
 @import "component/nav.css";
+@import "component/table.css";
 @import "newrecord.css";
 @import "component/form.css";
 @import "loginfail.css";

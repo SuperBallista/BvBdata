@@ -44,6 +44,8 @@ if (accessToken) {
             const cell2 = row.insertCell(1);
             const cell3 = row.insertCell(2);
             const cell4 = row.insertCell(3);
+            row.classList.add("table-row");
+
 
             cell1.id = `winscore${index}`;
             cell2.id = `loser${index}`;
@@ -146,34 +148,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const winnerSelect = document.getElementById('winner');
     const winnerScoreInput = document.getElementById('winnerScore');
     const myScoreInput = document.getElementById('myScore');
-
     submitButton.addEventListener('click', async (e) => {
         e.preventDefault();
-
+    
         const winner = winnerSelect.value;
         const winnerScore = winnerScoreInput.value;
         const myScore = myScoreInput.value;
-
+    
         const accessToken = localStorage.getItem('accessToken');
-
+    
+        // 입력값 검사
+        if (winner === localStorage.getItem('username')) {
+            alert('Winner and token owner cannot be the same.');
+            return;
+        }
+    
+        if (myScore < 0 || myScore > 4) {
+            alert('Invalid myScore value. Please enter a value between 0 and 4.');
+            return;
+        }
+    
         const requestBody = {
             winname: winner,
             winscore: winnerScore,
             myScore2: myScore
         };
-
+    
         const headers = new Headers({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         });
-
+    
         try {
             const response = await fetch('/submitbr', {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify(requestBody)
             });
-
+    
             if (response.ok) { // 응답 상태 코드가 200 (OK)일 때
                 const responseData = await response.json();
                 alert('데이터를 성공적으로 보냈습니다');
@@ -187,6 +199,37 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error sending data. Please try again.');
         }
     });
+    
+
 });
 
-// 미승인 기록 삭제요청 끝
+
+
+
+// 비로그인 시에 기능 감추기
+
+if (accessToken) {
+    
+const show3 = document.querySelectorAll('.msglogin');
+
+show3.forEach(element => {
+  element.style.display = 'none';
+});
+
+
+}
+else
+{    const show1 = document.querySelectorAll('.new-record');
+const show2 = document.querySelectorAll('.record-approve');
+
+show1.forEach(element => {
+  element.style.display = 'none';
+});
+
+show2.forEach(element => {
+  element.style.display = 'none';
+});
+
+};
+
+// 비로그인 시에 기능 감추기 끝

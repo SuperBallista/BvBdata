@@ -1,63 +1,153 @@
-label{
-font-size:20px;
+@media screen and (orientation : portrait) {
+
+
+    label{
+font-size:80px;
 
 }
 
-h2 {
-margin-top: 10%;
-display: block;
-text-align: center;
-font-size: 35px;
-margin-bottom: 5%;
-}
-
-#scoreForm{
-    background-color: rgba(255,255,0,0.3);
+#myScore, #winnerScore{
+width: 200px;
+height: 80px;
+font-size:70px;
+background-color: rgba(140,140,140,0.7);
 border-radius: 20px;
-margin:0% 15%;
-padding: 3%;
+border:none;
+padding: 5px, 20px;
+color:white;
 text-align: center;
 }
 
+.scoreform div{
+text-align: center;
+}
 
 #winner{
-width: 40%;
-height: 30px;
-margin: 1%;
-}
-
-#winnerScore, #myScore{
-width: 60px;
-height: 25px;
-margin: 3%;
-color : white;
-background-color: rgba(0,0,0,0.7);
+width: 450px;
+height: 80px;
+font-size: 60px;
+background-color: rgba(140,140,140,0.7);
+color:white;
 border-radius: 20px;
-padding-left: 15px;
-font-family: diablo;
 }
 
-option, #winner{
-    color : white;
-    background-color: rgba(0,0,0,0.7);
-    border-radius: 20px;
-    padding-left: 15px;
-    font-family: diablo;
+form{
+margin-left:45px;
+
 }
 
 .scorebox{
-    display: flex;
-justify-content: space-around;
-margin-top: 5px;
-margin-bottom: 10px;
+    text-align: center;
+}
+.scorebox div{
+margin:20px 0px;
 }
 
-#submitButton, .submitButton, #checkNicknameBtn, .backbutton{
-background-color: rgba(0,0,0,0.7);
-border: none;
-width: 70px;
-height: 30px;
-border-radius: 10px;
-font-family: diablo;
-color: white;
+
+#submitButton{
+    width: 300px;
+    height: 100px;
+    background-color: rgba(80,80,80,0.7);
+    color:white;
+    font-size: 60px;
+border-radius: 20px;
+border:none;
+padding: 10px;
+margin:20px;
+margin-left:45vw;
 }
+
+.approval-button, .cancel-button{
+    width: 100px;
+    height: 60px;
+    background-color: rgba(20,20,20,0.7);
+    color:white;
+    font-size: 40px;
+border-radius: 10px;
+border:none;
+padding: 2px;
+margin:10px;
+
+
+}
+
+
+}
+
+
+
+@media screen and (orientation : landscape) {
+
+
+    label{
+        font-size:40px;
+        
+        }
+
+
+        
+#myScore, #winnerScore{
+    width: 200px;
+    height: 40px;
+    font-size:30px;
+    background-color: rgba(140,140,140,0.7);
+    border-radius: 5px;
+    border:none;
+    padding: 1px;
+    color:white;
+    text-align: center;
+    }
+    
+form{
+    margin-left:55px;
+    
+    }
+
+
+
+    #winner{
+        width: 400px;
+        height: 40px;
+        font-size: 25px;
+        background-color: rgba(140,140,140,0.7);
+        color:white;
+        border-radius: 15px;
+        }
+        
+        .scorebox div{
+            margin:20px 0px;
+            }
+            
+
+            #submitButton{
+                width: 200px;
+                height: 60px;
+                background-color: rgba(80,80,80,0.7);
+                color:white;
+                font-size: 35px;
+            border-radius: 10px;
+            border:none;
+            padding: 5px;
+            margin:20px;
+            margin-left:55vw;
+            }
+
+
+
+            .approval-button, .cancel-button{
+                width: 70px;
+                height: 40px;
+                background-color: rgba(20,20,20,0.7);
+                color:white;
+                font-size: 25px;
+            border-radius: 5px;
+            border:none;
+            padding: 2px;
+            margin:5px;
+            
+            
+            }
+            
+
+        }
+
