@@ -89,7 +89,39 @@ text-align: center;
 font-size:25px;     
     }
     
+}
 
 
+
+.nav__logout:hover{
+color:yellow;
 
 }
+
+.nav__login:hover{
+    color:yellow;
+        }
+
+.nav__regi:hover{
+color:yellow;
+}
+
+.nav__rank:hover{
+color:yellow;
+}
+
+.nav__newrecord:hover{
+color:yellow;
+
+}
+.nav__record:hover{
+color: yellow;
+
+}
+
+.nav__hall:hover{
+color: yellow;
+
+}
+
+

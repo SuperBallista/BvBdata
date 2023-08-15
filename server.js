@@ -140,6 +140,7 @@ function getRecords(req, res) {
 }
 
 function getRankings(req, res) {
+
     const sql = 'SELECT rade, name, tscore, bscore, win, lose FROM ranking ORDER BY tscore DESC';
     const db = createConnection();
 
@@ -153,6 +154,9 @@ function getRankings(req, res) {
         res.json(results);
     });
 }
+
+
+
 
 // 로그인 절차
 app.use(session({
@@ -294,7 +298,7 @@ app.post('/submitbr', verifyToken, (req, res) => {
 
             // unchecked 테이블에 데이터 삽입
             const currentDate = new Date().toISOString().slice(0, 10);
-            const insertSql = 'INSERT INTO unchecked (id, order_number, date, winner, winning_score, loser, losing_Score) VALUES (?, 1, ?, ?, ?, ?, ?)';
+            const insertSql = 'INSERT INTO unchecked (id, date, winner, winning_score, loser, losing_Score) VALUES (?, ?, ?, ?, ?, ?)';
             
             db.query('SELECT COUNT(*) AS rowCount FROM unchecked', (error, results) => {
                 if (error) {
@@ -305,6 +309,12 @@ app.post('/submitbr', verifyToken, (req, res) => {
 
                 const rowCount = results[0].rowCount;
                 const id = rowCount + 1;
+
+                if (winname == nickname) {
+                    console.error('승자에 자기 계정을 넣을 수 없습니다', error);
+                    db.end();
+                    return res.status(500).json({ message: '승자에 자기 계정을 넣을 수 없습니다' });
+                }
 
                 db.query(
                     insertSql,

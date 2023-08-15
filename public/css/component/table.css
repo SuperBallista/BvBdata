@@ -63,10 +63,10 @@ display:block;
         }
 
         .table-row, th{
-
             font-size: 25px;
             text-align: center;
-            padding:25px;
+            padding:5px;
+
         }
 .portrait{
 display: none;

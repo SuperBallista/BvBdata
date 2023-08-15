@@ -158,13 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const accessToken = localStorage.getItem('accessToken');
     
         // 입력값 검사
-        if (winner === localStorage.getItem('username')) {
-            alert('Winner and token owner cannot be the same.');
-            return;
-        }
     
         if (myScore < 0 || myScore > 4) {
-            alert('Invalid myScore value. Please enter a value between 0 and 4.');
+            alert('점수는 0 ~ 4까지만 입력이 가능합니다');
             return;
         }
     
@@ -192,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 location.reload();
             } else {
                 console.error('Error sending data:', response.statusText);
-                alert('Error sending data. Please try again.');
+                alert('잘못된 입력 혹은 서버 에러입니다.');
             }
         } catch (error) {
             console.error('Error sending data:', error);
-            alert('Error sending data. Please try again.');
+            alert('잘못된 입력 혹은 서버 에러입니다.');
         }
     });
     
@@ -215,7 +211,6 @@ const show3 = document.querySelectorAll('.msglogin');
 show3.forEach(element => {
   element.style.display = 'none';
 });
-
 
 }
 else
