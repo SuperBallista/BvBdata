@@ -35,7 +35,7 @@ padding: 30px;
 }
 
 
-#nickname, #password #username {
+#nickname, #password, #username {
     border-radius: 20px;
     background-color: rgba(70,70,70,0.7);
     color:white;

@@ -204,10 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 비로그인 시에 기능 감추기
 
-if (accessToken) {
-    
+if (accessToken) {    
 const show3 = document.querySelectorAll('.msglogin');
-
 show3.forEach(element => {
   element.style.display = 'none';
 });

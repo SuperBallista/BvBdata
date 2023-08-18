@@ -2,6 +2,7 @@
 const checkNicknameBtn = document.getElementById("checkNicknameBtn");
 const nicknameInput = document.getElementById("nickname");
 const messageOutput = document.getElementById("messageOutput");
+const submitButton = document.getElementById("member-submitButton")
 
 function checkNickname() {
   const nickname = nicknameInput.value;
@@ -12,17 +13,13 @@ function checkNickname() {
     .then((data) => {
       if (data.exists) {
         messageOutput.textContent = "이미 사용 중인 닉네임입니다.";
-      } else {
+      } else if(data.nickname = 'No One Use it') {
         messageOutput.textContent = "사용 가능한 닉네임입니다.";
         submitButton.disabled = false;
         nicknameInput.readOnly = true;
         checkNicknameBtn.disabled = true;
       }
     })
-    .catch((error) => {
-      console.error("Error checking nickname:", error);
-      messageOutput.textContent = "닉네임 확인 중 오류가 발생했습니다.";
-    });
 }
 
 checkNicknameBtn.addEventListener("click", checkNickname);

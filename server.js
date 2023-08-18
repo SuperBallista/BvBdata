@@ -43,16 +43,16 @@ function verifyToken(req, res, next) {
 }
 
 
-
 // DB 연결 관리 함수
 function createConnection() {
     return mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'F4u@corsair',
+        password: 'd2rbvbpk',
         database: 'BvBdata'
     });
 }
+
 
 // 미들웨어
 app.use(express.static(__dirname));
@@ -79,12 +79,12 @@ app.get('/checkNickname/:nickname', (req, res) => {
     });
 });
 
+
 // 회원 가입 처리
 app.post('/process_registration', (req, res) => {
-    const nname = req.body.nickname;
+        const nname = req.body.nickname;
     const weaponGrade = req.body.weaponGrade;
     const password = req.body.password;
-
     const saltRounds = 12;
 
     bcrypt.hash(password, saltRounds, (err, hash) => {
@@ -98,19 +98,31 @@ app.post('/process_registration', (req, res) => {
 
         db.connect((err) => {
             if (err) {
-                console.error('Error connecting to MySQL:', err);
+                console.error('Error connecting to MariaDB:', err);
                 return;
             }
 
-            console.log('Connected to MySQL');
+            console.log('Connected to MariaDB');
 
             const sql = 'INSERT INTO member (name, wgrade, pw) VALUES (?, ?, ?)';
             db.query(sql, [nname, weaponGradeValue, hash], (error, results) => {
-                db.end();
                 if (error) {
                     console.error('Error while saving to database:', error);
                 } else {
-                    console.log('Data saved to database');
+                    let newbscore = 1000;
+                    if (weaponGradeValue === 2) {
+                        newbscore = 800;
+                    }
+                    const newranker = 'INSERT INTO ranking (name, tscore, bscore, win, lose) VALUES (?, 1000, ?, 0, 0)';
+                    db.query(newranker, [nname, newbscore], (error, results) => {
+                        db.end();
+
+                        if (error) {
+                            console.error('랭킹 목록에 추가 실패 에러', error);
+                        } else {
+                            console.log('Data saved to database');
+                        }
+                    });
                 }
             });
         });
@@ -119,6 +131,8 @@ app.post('/process_registration', (req, res) => {
         res.redirect(`/index.html?message=${encodeURIComponent(registrationMessage)}`);
     });
 });
+
+
 
 // 레코드 및 랭킹 출력
 app.get('/getRecords', getRecords);
@@ -140,8 +154,7 @@ function getRecords(req, res) {
 }
 
 function getRankings(req, res) {
-
-    const sql = 'SELECT rade, name, tscore, bscore, win, lose FROM ranking ORDER BY tscore DESC';
+    const sql = 'SELECT name, tscore, bscore, win, lose FROM ranking';
     const db = createConnection();
 
     db.query(sql, (err, results) => {
@@ -154,7 +167,6 @@ function getRankings(req, res) {
         res.json(results);
     });
 }
-
 
 
 
@@ -480,5 +492,4 @@ db.query(updateWinUserQuery, [winUserData.bscore, winUserData.tscore, winUserDat
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
 
