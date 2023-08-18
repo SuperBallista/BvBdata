@@ -46,7 +46,7 @@ function verifyToken(req, res, next) {
 // DB 연결 관리 함수
 function createConnection() {
     return mysql.createConnection({
-        host: 'localhost',
+        host: 'svc.sel3.cloudtype.app:30907',
         user: 'root',
         password: 'd2rbvbpk',
         database: 'BvBdata'
